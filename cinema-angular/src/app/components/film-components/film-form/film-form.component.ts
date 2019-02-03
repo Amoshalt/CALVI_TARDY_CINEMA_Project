@@ -68,7 +68,17 @@ export class FilmFormComponent implements OnInit {
       || !this.film.filmEntity.originalLanguageId
       || this.film.actorEntityList.length === 0
       || this.film.categoryEntityList.length === 0) {
-      window.alert('Veuillez remplir tout les champs');
+      window.alert('Please fill all the form.');
+      return false;
+    }
+
+    if (+this.film.filmEntity.releaseYear > 2155) {
+      window.alert('Release year must be less than 2155');
+      return false;
+    }
+
+    if (+this.film.filmEntity.length > 500) {
+      window.alert('Length must be less than 500');
       return false;
     }
     if (!this.id) {
