@@ -3,6 +3,6 @@
     Language
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-    <a class="dropdown-item" (click)="returnLanguage(language)" id="{{ language.languageId }}" *ngFor="let language of languages" >{{ language.name }}</a>
+    <a class="dropdown-item hoovered" (click)="returnLanguage(language)" id="{{ language.languageId }}" *ngFor="let language of languages" >{{ language.name }}</a>
   </div>
 </div>

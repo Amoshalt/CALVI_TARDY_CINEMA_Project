@@ -10,3 +10,7 @@ li.list-group-item {
 div.form-group {
   text-align: center;
 }
+
+.hoovered{
+  cursor:pointer;
+}
