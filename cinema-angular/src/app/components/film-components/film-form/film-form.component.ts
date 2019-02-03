@@ -68,6 +68,7 @@ export class FilmFormComponent implements OnInit {
       || !this.film.filmEntity.originalLanguageId
       || this.film.actorEntityList.length === 0
       || this.film.categoryEntityList.length === 0) {
+      window.alert('Veuillez remplir tout les champs');
       return false;
     }
     if (!this.id) {
