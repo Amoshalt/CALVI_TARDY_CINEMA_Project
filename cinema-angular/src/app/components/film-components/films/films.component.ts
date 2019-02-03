@@ -35,20 +35,18 @@ export class FilmsComponent implements OnInit {
 
   }
   categoryChangeHandler(category: Category) {
+    this.resourcesLoaded = false;
+    this.complexFilms = null;
     if (category === null) {
       this.filmService.getComplexFilms().subscribe(value => {
+        this.resourcesLoaded = true;
         this.complexFilms = value;
       });
     } else {
       this.filmService.getComplexFilmsByCategoryId(category.categoryId).subscribe( value => {
+        this.resourcesLoaded = true;
         this.complexFilms = value;
       });
     }
-  }
-
-  reloadPage(test: number) {
-    this.filmService.getComplexFilmsByCategoryId(test).subscribe( value => {
-      this.complexFilms = value;
-    });
   }
 }
