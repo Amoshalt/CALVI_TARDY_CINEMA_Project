@@ -20,7 +20,17 @@ export class ActorsComponent implements OnInit {
   ngOnInit() {
     this.actorSearched = '';
     this.actorServ.getActors().subscribe( value => {
-      this.actors = value;
+      this.actors = value.sort((a: Actor, b: Actor) => {
+        if (a.lastName < b.lastName) {
+          return -1;
+        }
+        if (a.lastName > b.lastName) { return 1; }
+        if (a.firstName < b.firstName) {
+          return -1;
+        }
+        if (a.firstName > b.firstName) { return 1; }
+        return 0;
+      });
     });
   }
 
