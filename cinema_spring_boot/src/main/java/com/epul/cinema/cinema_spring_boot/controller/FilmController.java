@@ -5,6 +5,7 @@ import com.epul.cinema.cinema_spring_boot.domains.*;
 import com.epul.cinema.cinema_spring_boot.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -151,7 +152,7 @@ public class FilmController {
     }
 
     @GetMapping("/removeComplexFilm/{filmId}")
-    public String removeComplexFilm(@PathVariable(value = "filmId") short filmId){
+    public ResponseEntity removeComplexFilm(@PathVariable(value = "filmId") short filmId){
         String destinationPage = "";
         FilmEntity f = this.filmEntityRepository.getOne(filmId);
         List<FilmCategoryEntity> filmCategoryEntities = this.filmCategoryEntityRepository.getFilmCategoriesByFilmId((short) filmId);
@@ -167,7 +168,7 @@ public class FilmController {
             System.out.println("ERROR:" + e.getMessage());
             ResponseEntity.notFound().build();
         }
-        return "OK";
+        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/getComplexFilmsByCategory/{id}")
