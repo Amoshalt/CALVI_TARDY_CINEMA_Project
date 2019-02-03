@@ -29,7 +29,11 @@ export class FilmsPage {
     this.resourcesLoaded = false;
     this.filmProvider.getComplexFilms().subscribe( value => {
       this.resourcesLoaded = true;
-      this.films = value;
+      this.films = value.sort((a, b) => {
+        if (a.filmEntity.title < b.filmEntity.title) { return -1; }
+        if (a.filmEntity.title > b.filmEntity.title) { return 1; }
+        return 0;
+      });
     });
   }
 
@@ -42,7 +46,6 @@ export class FilmsPage {
 
 
   addFilm(){
-    let modal = this.modalController.create(AddFilmPage);
-    modal.present();
+    this.navCtrl.push(AddFilmPage);
   }
 }
