@@ -4,6 +4,6 @@
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" (click)="returnCategory(null)" id="null" >All categories</a>
-    <a class="dropdown-item" (click)="returnCategory(category)" id="{{ category.categoryId }}" *ngFor="let category of categories" >{{ category.name }}</a>
+    <a class="dropdown-item hoovered" (click)="returnCategory(category)" id="{{ category.categoryId }}" *ngFor="let category of categories" >{{ category.name }}</a>
   </div>
 </div>

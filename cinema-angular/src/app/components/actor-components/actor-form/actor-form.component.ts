@@ -19,6 +19,7 @@ export class ActorFormComponent implements OnInit {
 
   valider(form): boolean {
     if (!form.valid) {
+      window.alert('Des champs required sont vides');
       return false;
     }
     this.actorService.addActor(this.actor).subscribe(

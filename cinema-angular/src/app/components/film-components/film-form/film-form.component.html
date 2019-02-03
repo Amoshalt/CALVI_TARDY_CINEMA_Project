@@ -24,7 +24,7 @@
           <div class="col">
             <div class="form-group">
               <label class="h3"for="releaseYear">Release year</label>
-              <input type="text" class="form-control" [(ngModel)]="film?.filmEntity.releaseYear" id="releaseYear" name="releaseYear" placeholder="Release year" required>
+              <input type="number" class="form-control" [(ngModel)]="film?.filmEntity.releaseYear" id="releaseYear" name="releaseYear" placeholder="Release year" required>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div class="col">
             <div class="form-group">
               <label class="h3"for="length">Length</label>
-              <input type="text" class="form-control" [(ngModel)]="film?.filmEntity.length" id="length" name="length" placeholder="Length" required>
+              <input type="number" class="form-control" [(ngModel)]="film?.filmEntity.length" id="length" name="length" placeholder="Length" required>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
             <div class="form-group">
               <label class="h3">Actors</label>
               <ul class="list-group" >
-                <li class="list-group-item" *ngFor=" let actor of film?.actorEntityList" (click)="rmAct(actor)">
+                <li class="list-group-item hoovered" *ngFor=" let actor of film?.actorEntityList" (click)="rmAct(actor)">
                   {{actor.firstName }} {{actor.lastName }}
                 </li>
               </ul>

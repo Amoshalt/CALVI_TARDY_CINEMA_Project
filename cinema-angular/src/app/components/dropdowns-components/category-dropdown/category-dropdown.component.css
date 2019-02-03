@@ -1,3 +1,6 @@
 div.dropdown {
   padding-top: 5px;
 }
+.hoovered{
+  cursor: pointer;
+}
