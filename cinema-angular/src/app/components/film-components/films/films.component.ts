@@ -27,25 +27,44 @@ export class FilmsComponent implements OnInit {
     this.resourcesLoaded = false;
     this.filmService.getComplexFilms().subscribe( value => {
       this.resourcesLoaded = true;
-      this.complexFilms = value;
+      this.complexFilms = value.sort((a, b) => {
+        if (a.filmEntity.title < b.filmEntity.title) { return -1; }
+        if (a.filmEntity.title > b.filmEntity.title) { return 1; }
+        return 0;
+      });
     });
     this.categoryService.getCategories().subscribe(value => {
-      this.categories = value;
+      this.categories = value.sort((a, b) => {
+        if (a.name < b.name) { return -1; }
+        if (a.name > b.name) { return 1; }
+        return 0;
+      });
     });
 
   }
+
+
+
   categoryChangeHandler(category: Category) {
     this.resourcesLoaded = false;
     this.complexFilms = null;
     if (category === null) {
       this.filmService.getComplexFilms().subscribe(value => {
         this.resourcesLoaded = true;
-        this.complexFilms = value;
+        this.complexFilms = value.sort((a, b) => {
+          if (a.filmEntity.title < b.filmEntity.title) { return -1; }
+          if (a.filmEntity.title > b.filmEntity.title) { return 1; }
+          return 0;
+        });
       });
     } else {
       this.filmService.getComplexFilmsByCategoryId(category.categoryId).subscribe( value => {
         this.resourcesLoaded = true;
-        this.complexFilms = value;
+        this.complexFilms = value.sort((a, b) => {
+          if (a.filmEntity.title < b.filmEntity.title) { return -1; }
+          if (a.filmEntity.title > b.filmEntity.title) { return 1; }
+          return 0;
+        });
       });
     }
   }
