@@ -71,7 +71,10 @@
 
       <div class="row">
         <button class="btn btn-outline-secondary" type="button" id="updateFilmButton" [routerLink]="['/addFilm', filmComplex?.filmEntity.filmId]">
-          Modifier
+          Modify
+        </button>
+        <button class="btn btn-danger" type="button" id="removeFilmButton" (click)="removeFilm(filmComplex)">
+          Remove
         </button>
       </div>
     </div>

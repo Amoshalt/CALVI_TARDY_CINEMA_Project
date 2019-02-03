@@ -32,4 +32,14 @@ export class FilmComponent implements OnInit {
       this.filmComplex = value;
     });
   }
+
+  removeFilm(filmComplex: ComplexFilm) {
+    this.filmService.removeComplexFilm(filmComplex).subscribe(() => {
+        window.location.href = 'films';
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

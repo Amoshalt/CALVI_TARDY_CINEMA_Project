@@ -47,4 +47,9 @@ export class FilmService {
     const url = environment.api + this. type + 'updateComplexFilm';
     return this.http.post(url, film);
   }
+
+  removeComplexFilm(filmComplex: ComplexFilm) {
+    const url = environment.api + 'Film/removeComplexFilm/' + filmComplex.filmEntity.filmId;
+    return this.http.get(url).pipe(map(message => message as string))
+  }
 }
