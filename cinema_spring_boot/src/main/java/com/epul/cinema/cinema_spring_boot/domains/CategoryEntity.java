@@ -9,7 +9,7 @@ import java.util.Objects;
 public class CategoryEntity {
     private Byte categoryId;
     private String name;
-    private Timestamp lastUpdate;
+    private Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
 
     @Id
     @Column(name = "category_id", nullable = false)

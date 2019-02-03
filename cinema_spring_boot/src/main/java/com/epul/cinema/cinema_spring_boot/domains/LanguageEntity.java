@@ -9,7 +9,7 @@ import java.util.Objects;
 public class LanguageEntity {
     private Byte languageId;
     private String name;
-    private Timestamp lastUpdate;
+    private Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
 
     @Id
     @Column(name = "language_id", nullable = false)

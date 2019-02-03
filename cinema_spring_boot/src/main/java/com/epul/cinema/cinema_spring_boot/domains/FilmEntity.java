@@ -20,7 +20,7 @@ public class FilmEntity {
     private BigDecimal replacementCost;
     private String rating;
     private String specialFeatures;
-    private Timestamp lastUpdate;
+    private Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

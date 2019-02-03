@@ -1,6 +1,7 @@
 package com.epul.cinema.cinema_spring_boot.repositories;
 
 import com.epul.cinema.cinema_spring_boot.domains.FilmEntity;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,4 +28,24 @@ public interface FilmEntityRepository extends JpaRepository<FilmEntity, Short> {
 
     )
     List<Object> findComplexFilmById(@Param("filmId") short filmId);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    <S extends FilmEntity> S save(S s);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    <S extends FilmEntity> List<S> saveAll(Iterable<S> iterable);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    void delete(FilmEntity user);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    void deleteAll(Iterable<? extends FilmEntity> iterable);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    void deleteAll();
 }

@@ -10,7 +10,7 @@ public class ActorEntity {
     private Short actorId;
     private String firstName;
     private String lastName;
-    private Timestamp lastUpdate;
+    private Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

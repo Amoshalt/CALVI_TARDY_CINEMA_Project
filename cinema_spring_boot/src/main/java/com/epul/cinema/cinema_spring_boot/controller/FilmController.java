@@ -4,6 +4,7 @@ import com.epul.cinema.cinema_spring_boot.domains.Language;
 import com.epul.cinema.cinema_spring_boot.domains.*;
 import com.epul.cinema.cinema_spring_boot.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +41,7 @@ public class FilmController {
     }
 
     @GetMapping("/getFilms")
+    @Cacheable("list")
     public List<FilmEntity> findAllFilms(){
         String destinationPage = "";
         List<FilmEntity> mesFilms = null;
@@ -53,6 +55,7 @@ public class FilmController {
     }
 
     @GetMapping("/getComplexFilms")
+    @Cacheable("list")
     public List<ComplexFilm> findAllComplexFilms(){
         String destinationPage = "";
         List<FilmEntity> mesFilms = null;

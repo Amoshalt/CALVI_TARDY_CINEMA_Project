@@ -6,7 +6,7 @@ public class Language {
 
     private Byte languageId;
     private String name;
-    private Timestamp last_update;
+    private Timestamp last_update = new Timestamp(System.currentTimeMillis());
 
     public Language(Byte languageId, String name, Timestamp last_update) {
         this.languageId = languageId;

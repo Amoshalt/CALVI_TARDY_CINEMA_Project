@@ -1,6 +1,7 @@
 package com.epul.cinema.cinema_spring_boot.repositories;
 
 import com.epul.cinema.cinema_spring_boot.domains.FilmCategoryEntity;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -30,4 +31,24 @@ public interface FilmCategoryEntityRepository extends JpaRepository<FilmCategory
             " where fc.filmId=:filmId"
     )
     void deleteByFilmId(@Param("filmId") Short filmId);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    <S extends FilmCategoryEntity> S save(S s);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    <S extends FilmCategoryEntity> List<S> saveAll(Iterable<S> iterable);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    void delete(FilmCategoryEntity user);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    void deleteAll(Iterable<? extends FilmCategoryEntity> iterable);
+
+    @Override
+    @CacheEvict(value="list", allEntries=true)
+    void deleteAll();
 }
