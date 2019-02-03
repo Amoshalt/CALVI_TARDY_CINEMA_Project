@@ -34,9 +34,9 @@ export class ActorService {
     return this.http.get<Actor>(url).pipe(map(actor => actor as Actor));
   }
 
-  delete(id: number) {
-    const url = environment.api + 'acteur/' + id;
-    return this.http.delete(url);
+  delete(actor: Actor) {
+    const url = environment.api + '/Actor/removeActor';
+    return this.http.post(url, actor);
   }
 
   addActor(actor: Actor): Observable<Object> {

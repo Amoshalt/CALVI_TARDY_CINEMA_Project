@@ -1,3 +1,7 @@
 .hoovered{
   cursor:pointer
 }
+
+.row {
+  align-items: center;
+}
