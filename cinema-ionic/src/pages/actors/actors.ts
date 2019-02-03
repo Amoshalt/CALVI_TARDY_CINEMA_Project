@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Actor} from "../../models/actor";
 import {ActorProvider} from "../../providers/actor/actor";
+import {AddFilmPage} from "../add-film/add-film";
+import {AddActorPage} from "../add-actor/add-actor";
+import {CreateActorPage} from "../create-actor/create-actor";
 
 /**
  * Generated class for the ActorsPage page.
@@ -41,5 +44,10 @@ export class ActorsPage {
       () => {
         this.navCtrl.push(ActorsPage);
       });
+  }
+
+
+  addActor(){
+    this.navCtrl.push(CreateActorPage);
   }
 }
