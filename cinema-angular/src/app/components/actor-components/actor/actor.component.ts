@@ -11,10 +11,15 @@ export class ActorComponent implements OnInit {
 
   @Input()
   actor: Actor;
+  @Input()
+  showDelete: boolean;
 
   constructor(private actorService: ActorService) { }
 
   ngOnInit() {
+    if (this.showDelete !== false) {
+      this.showDelete = true;
+    }
   }
 
   removeActor(actor: Actor) {
