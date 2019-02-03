@@ -10,7 +10,7 @@ import java.util.Objects;
 public class FilmActorEntity {
     private Short actorId;
     private Short filmId;
-    private Timestamp lastUpdate;
+    private Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
     private ActorEntity actorByActorId;
     private FilmEntity filmByFilmId;
 
