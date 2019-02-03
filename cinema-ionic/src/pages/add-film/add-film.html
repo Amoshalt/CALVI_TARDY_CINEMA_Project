@@ -67,8 +67,33 @@
       </ion-select>
     </ion-item>
 
-    <button ion-button *ngIf="film?.filmEntity.filmId" type="submit" block>Update</button>
-    <button ion-button *ngIf="!film?.filmEntity.filmId" type="submit" block>Submit</button>
+    <button ion-button *ngIf="film?.filmEntity.filmId
+    && !(!form.valid
+      || !film?.filmEntity.languageId
+      || !film?.filmEntity.originalLanguageId
+      || film?.actorEntityList.length === 0
+      || film?.categoryEntityList.length === 0)" type="submit" block>Update</button>
+
+    <button ion-button *ngIf="film?.filmEntity.filmId
+    && (!form.valid
+      || !film?.filmEntity.languageId
+      || !film?.filmEntity.originalLanguageId
+      || film?.actorEntityList.length === 0
+      || film?.categoryEntityList.length === 0)" type="submit" disabled block>Update</button>
+
+    <button ion-button *ngIf="!film?.filmEntity.filmId
+    && !(!form.valid
+      || !film?.filmEntity.languageId
+      || !film?.filmEntity.originalLanguageId
+      || film?.actorEntityList.length === 0
+      || film?.categoryEntityList.length === 0)" type="submit" block>Submit</button>
+
+    <button ion-button *ngIf="!film?.filmEntity.filmId
+    && (!form.valid
+      || !film?.filmEntity.languageId
+      || !film?.filmEntity.originalLanguageId
+      || film?.actorEntityList.length === 0
+      || film?.categoryEntityList.length === 0)" type="submit" disabled block>Submit</button>
 
   </form>
 </ion-content>
