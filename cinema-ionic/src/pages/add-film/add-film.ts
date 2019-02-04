@@ -109,6 +109,16 @@ export class AddFilmPage {
       return false;
     }
 
+    if (+this.film.filmEntity.releaseYear > 2155 || +this.film.filmEntity.releaseYear < 1901) {
+      window.alert('Release year must be higher than 1901 and lower than 2155');
+      return false;
+    }
+
+    if (+this.film.filmEntity.length > 500 || +this.film.filmEntity.length < 0 ) {
+      window.alert('Length must be higher than 0 and lower than 500');
+      return false;
+    }
+
     this.languages.map(value => {
       if (value.languageId == this.film.filmEntity.languageId) {
         this.film.languageNormal = value;

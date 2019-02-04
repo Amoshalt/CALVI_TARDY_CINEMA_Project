@@ -4,7 +4,6 @@ import {map} from "rxjs/operators";
 import {Observable} from "rxjs/Observable";
 import {ComplexFilm} from "../../models/complex-film";
 import {environment} from "../../environments/environment";
-import {Actor} from "../../models/actor";
 
 /*
   Generated class for the FilmProvider provider.
