@@ -19,6 +19,10 @@ installer les dépences:
 
 3/ -ng serve
 
+4/ dans un navigateur: localhost:4200
+
 IONIC:
 
-1/ ionic start
+1/ ionic serve --lab
+
+2/ localhost:8100 ou localhost:8200 (pour la version mobile)
