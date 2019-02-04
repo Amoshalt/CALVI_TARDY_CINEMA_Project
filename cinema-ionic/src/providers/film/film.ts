@@ -4,6 +4,7 @@ import {map} from "rxjs/operators";
 import {Observable} from "rxjs/Observable";
 import {ComplexFilm} from "../../models/complex-film";
 import {environment} from "../../environments/environment";
+import {Actor} from "../../models/actor";
 
 /*
   Generated class for the FilmProvider provider.
@@ -44,5 +45,10 @@ export class FilmProvider {
   public removeComplexFilm(filmId): Observable<string> {
     const url = environment.api + 'Film/removeComplexFilm/' + filmId;
     return this.http.get(url).pipe(map(message => message as string));
+  }
+
+  getComplexFilmsByActor(actorSelectedId: number) {
+      const url = environment.api + 'Film/getComplexFilmsByActor/' + actorSelectedId;
+      return this.http.get(url).pipe(map(films => films as ComplexFilm[]));
   }
 }

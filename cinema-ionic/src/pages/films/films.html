@@ -23,6 +23,13 @@
   <ion-searchbar
     [(ngModel)]="filmSearched">
   </ion-searchbar>
+  <ion-item>
+    <ion-label class="h3">Actor</ion-label>
+    <ion-select [(ngModel)]="actorSelectedId" (ionChange)="refreshFilms()">
+      <ion-option *ngFor="let actor of actors" value="{{actor.actorId}}">{{actor.lastName}} {{actor.firstName}}</ion-option>
+    </ion-select>
+  </ion-item>
+
   <ion-spinner *ngIf="!resourcesLoaded" align-items-center></ion-spinner>
   <ion-list>
     <ion-card *ngFor="let film of films | filmNameFilter : filmSearched" (click)="goToDetail(film)">

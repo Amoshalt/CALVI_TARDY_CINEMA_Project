@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Actor} from "../../models/actor";
 import {ActorProvider} from "../../providers/actor/actor";
-import {AddFilmPage} from "../add-film/add-film";
-import {AddActorPage} from "../add-actor/add-actor";
 import {CreateActorPage} from "../create-actor/create-actor";
 
 /**
@@ -27,7 +25,17 @@ export class ActorsPage {
     this.actorSearched = '';
     this.items = [];
     this.actorProvider.getActors().subscribe( value => {
-      this.items = value;
+      this.items = value.sort((a: Actor, b: Actor) => {
+        if (a.lastName < b.lastName) {
+          return -1;
+        }
+        if (a.lastName > b.lastName) { return 1; }
+        if (a.firstName < b.firstName) {
+          return -1;
+        }
+        if (a.firstName > b.firstName) { return 1; }
+        return 0;
+      });
     });
   }
 
