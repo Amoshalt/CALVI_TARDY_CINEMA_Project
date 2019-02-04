@@ -71,14 +71,14 @@ export class FilmFormComponent implements OnInit {
       window.alert('Please fill all the form.');
       return false;
     }
-
-    if (+this.film.filmEntity.releaseYear > 2155) {
-      window.alert('Release year must be less than 2155');
+    
+    if (+this.film.filmEntity.releaseYear > 2155  || +this.film.filmEntity.releaseYear < 1901) {
+      window.alert('Release year must be higher than 1901 and lower than 2155');
       return false;
     }
 
-    if (+this.film.filmEntity.length > 500) {
-      window.alert('Length must be less than 500');
+    if (+this.film.filmEntity.length > 500 || +this.film.filmEntity.length < 0) {
+      window.alert('Length must be higher than 0 and lower than 500');
       return false;
     }
     if (!this.id) {
