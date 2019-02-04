@@ -184,38 +184,64 @@ public class FilmController {
                     filmCategoryEntityList) {
                 filmEntityList.add((FilmEntity) filmEntityRepository.findFilmById(fc.getFilmId()));
             }
-            for (FilmEntity f: filmEntityList) {
-                ComplexFilm complexFilm = new ComplexFilm();
-                complexFilm.setFilmEntity(f);
-
-                List<FilmCategoryEntity> filmCategoryEntityList2 = filmCategoryEntityRepository.getFilmCategoriesByFilmId(f.getFilmId());
-                for (FilmCategoryEntity fc :
-                        filmCategoryEntityList2) {
-                    complexFilm.addCategoryEntity(categoryEntityRepository.getOne(fc.getCategoryId()));
-                }
-
-                filmActorEntityList = filmActorEntityRepository.getActorsByFilmId(f.getFilmId());
-                for (FilmActorEntity fa :
-                        filmActorEntityList) {
-                    complexFilm.addActorEntity(actorEntityRepository.getOne(fa.getActorId()));
-                }
-
-                LanguageEntity languageEntity = languageEntityRepository.getOne(f.getLanguageId());
-                Language language = new Language(languageEntity.getLanguageId(),languageEntity.getName(),languageEntity.getLastUpdate());
-                complexFilm.setLanguageNormal(language);
-
-                LanguageEntity languageVOEntity = languageEntityRepository.getOne(f.getOriginalLanguageId());
-                Language languageVO = new Language(languageVOEntity.getLanguageId(),languageVOEntity.getName(),languageVOEntity.getLastUpdate());
-                complexFilm.setLanguageVO(languageVO);
-
-                complexFilmList.add(complexFilm);
-            }
+            fillComplexFilmFromFilmEntity(filmEntityList, complexFilmList);
         } catch (Exception e) {
 
             System.out.println(e);
             ResponseEntity.notFound().build();
         }
         return complexFilmList;
+    }
+
+    @GetMapping("/getComplexFilmsByActor/{id}")
+    public List<ComplexFilm> getComplexFilmsByActor(@PathVariable(value = "id") Short actorId){
+        String destinationPage = "";
+        List<FilmEntity> filmEntityList = new ArrayList<>();
+        List<ComplexFilm> complexFilmList = new ArrayList<>();
+        List<FilmActorEntity> filmActorEntityList;
+        try {
+                filmActorEntityList = filmActorEntityRepository.getFilmActorsByActorId(actorId);
+            for (FilmActorEntity fa :
+                    filmActorEntityList) {
+                filmEntityList.add((FilmEntity) filmEntityRepository.findFilmById(fa.getFilmId()));
+            }
+            fillComplexFilmFromFilmEntity(filmEntityList, complexFilmList);
+        } catch (Exception e) {
+
+            System.out.println(e);
+            ResponseEntity.notFound().build();
+        }
+        return complexFilmList;
+    }
+
+    private void fillComplexFilmFromFilmEntity(List<FilmEntity> filmEntityList, List<ComplexFilm> complexFilmList) {
+        List<FilmActorEntity> filmActorEntityList;
+        for (FilmEntity f: filmEntityList) {
+            ComplexFilm complexFilm = new ComplexFilm();
+            complexFilm.setFilmEntity(f);
+
+            List<FilmCategoryEntity> filmCategoryEntityList2 = filmCategoryEntityRepository.getFilmCategoriesByFilmId(f.getFilmId());
+            for (FilmCategoryEntity fc :
+                    filmCategoryEntityList2) {
+                complexFilm.addCategoryEntity(categoryEntityRepository.getOne(fc.getCategoryId()));
+            }
+
+            filmActorEntityList = filmActorEntityRepository.getActorsByFilmId(f.getFilmId());
+            for (FilmActorEntity fa :
+                    filmActorEntityList) {
+                complexFilm.addActorEntity(actorEntityRepository.getOne(fa.getActorId()));
+            }
+
+            LanguageEntity languageEntity = languageEntityRepository.getOne(f.getLanguageId());
+            Language language = new Language(languageEntity.getLanguageId(),languageEntity.getName(),languageEntity.getLastUpdate());
+            complexFilm.setLanguageNormal(language);
+
+            LanguageEntity languageVOEntity = languageEntityRepository.getOne(f.getOriginalLanguageId());
+            Language languageVO = new Language(languageVOEntity.getLanguageId(),languageVOEntity.getName(),languageVOEntity.getLastUpdate());
+            complexFilm.setLanguageVO(languageVO);
+
+            complexFilmList.add(complexFilm);
+        }
     }
 
     @PostMapping("/addComplexFilm")

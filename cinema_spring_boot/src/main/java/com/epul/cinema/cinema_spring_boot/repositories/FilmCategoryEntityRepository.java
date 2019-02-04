@@ -1,5 +1,6 @@
 package com.epul.cinema.cinema_spring_boot.repositories;
 
+import com.epul.cinema.cinema_spring_boot.domains.FilmActorEntity;
 import com.epul.cinema.cinema_spring_boot.domains.FilmCategoryEntity;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;

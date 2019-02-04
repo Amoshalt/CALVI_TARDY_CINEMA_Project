@@ -26,6 +26,14 @@ public interface FilmActorEntityRepository extends JpaRepository<FilmActorEntity
     )
     void deleteByFilmId(@Param("filmId") Short filmId);
 
+
+
+    @Query(" Select fa " +
+            " from FilmActorEntity fa "+
+            " where fa.actorId=:actorId"
+    )
+    List<FilmActorEntity> getFilmActorsByActorId(@Param("actorId") Short actorId);
+
     @Override
     @CacheEvict(value="list", allEntries=true)
     <S extends FilmActorEntity> S save(S s);
