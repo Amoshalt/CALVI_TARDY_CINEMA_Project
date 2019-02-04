@@ -6,22 +6,26 @@ CREATION DE LA DB:
 
 2/ On remplie la db avec le fichier sakila-db/sakila-data.sql
 
-LANCER SPING BOOT:
+3/ autorisations user: userepul mdp: epul
 
+LANCER SPRING BOOT:
+
+1/ Ouvrir le dossier cinema_spring_boot dans IntelIJ 
 1/ Run CinemaSpringBootApplication
 
 ANGULAR:
-installer les dépences:
+Cmd dans le dossier cinema-angular, installer les dépences et lancer:
 
-1/ -npm update
+1/ npm install
 
-2/ -npm install
+2/ npm update
 
-3/ -ng serve
+3/ ng serve
 
 4/ dans un navigateur: localhost:4200
 
 IONIC:
+Cmd dans le dossier cinema-ionic
 
 1/ ionic serve --lab
 
